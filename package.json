@@ -1,0 +1,23 @@
+{
+  "name": "scss-utils",
+  "version": "1.0.0",
+  "description": "Some utils for your project on scss ",
+  "main": "index.scss",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danilozano413/scss-utils.git"
+  },
+  "keywords": [
+    "scss",
+    "utils"
+  ],
+  "author": "Dani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danilozano413/scss-utils/issues"
+  },
+  "homepage": "https://github.com/danilozano413/scss-utils#readme"
+}

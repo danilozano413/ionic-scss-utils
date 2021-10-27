@@ -7,7 +7,7 @@ $colors_scheme: (
     light: $light,
     dark: $dark,
     contrast: $contrast
-);
+) !default;
 
 $colors_base: $colors_light;
 $colors_opposed: $colors_opposed_light;

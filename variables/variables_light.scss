@@ -8,11 +8,9 @@ $colors_light: (
     warning: #efaf00,
     danger: #ff4848,
     dark: #27283b,
-    medium: #e9ecef,
-    light: #f8f9fa,
-    gray: #adb5bd,
-    purple: #ba7df7
-);
+    medium: #adb5bd,
+    light: #f8f9fa
+) !default;
 
 $colors_config_light: (
     tint: 15%,
@@ -22,15 +20,15 @@ $colors_config_light: (
     opacity: 0.2,
     trans: 0.5,
     lucid: 0.8
-);
+) !default;
 
 $colors_opposed_light: (
     light: primary,
     default: light
-);
+) !default;
 
 $light: (
     colors: $colors_light,
     config: $colors_config_light,
     opposed: $colors_opposed_light
-);
+) !default;

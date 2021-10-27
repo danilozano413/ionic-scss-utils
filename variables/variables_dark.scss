@@ -22,15 +22,15 @@ $colors_config_dark: (
     opacity: 0.2,
     trans: 0.4,
     lucid: 0.8
-);
+) !default;
 
 $colors_opposed_dark: (
     dark: primary,
     default: dark
-);
+) !default;
 
 $dark: (
     colors: $colors_dark,
     config: $colors_config_dark,
     opposed: $colors_opposed_dark
-);
+) !default;

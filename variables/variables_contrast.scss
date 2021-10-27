@@ -12,7 +12,7 @@ $colors_contrast: (
     light: #f8f9fa,
     gray: #adb5bd,
     purple: #ba7df7
-);
+) !default;
 
 $colors_config_contrast: (
     tint: 15%,
@@ -22,15 +22,15 @@ $colors_config_contrast: (
     opacity: 0.2,
     trans: 0.4,
     lucid: 0.8
-);
+) !default;
 
 $colors_opposed_contrast: (
     light: primary,
     default: light
-);
+) !default;
 
 $contrast: (
     colors: $colors_contrast,
     config: $colors_config_contrast,
     opposed: $colors_opposed_contrast
-);
+) !default;

@@ -1,0 +1,325 @@
+.w {
+    @for $i from 0 through 10 {
+        &-#{$i}0 {
+            width: #{$i}#{0%};
+        }
+        &-#{$i}5 {
+            width: #{$i}#{5%};
+        }
+    }
+    @each $keySize, $valueSize in $screen-breakpoints {
+        @include media-min($valueSize) {
+            width: #{$valueSize};
+
+            &-#{$keySize} {
+                @for $i from 0 through 10 {
+                    &-#{$i}0 {
+                        width: #{$i}#{0%};
+                    }
+                    &-#{$i}5 {
+                        width: #{$i}#{5%};
+                    }
+                }
+            }
+        }
+    }
+
+    // rem
+    &r {
+        @for $i from 1 through 10 {
+            &-#{$i} {
+                width: #{#{$i}#{'rem'}};
+                @for $z from 1 through 9 {
+                    &_#{$z} {
+                        width: #{#{$i}#{'.'}#{$z}#{'rem'}};
+                    }
+                }
+            }
+        }
+    }
+
+    // view port height
+    &v,
+    &vh {
+        @for $i from 1 through 10 {
+            &-#{$i}0 {
+                height: #{#{$i}0#{'vw'}};
+            }
+            &_#{$i}5 {
+                height: #{#{$i}5#{'vw'}};
+            }
+        }
+    }
+    // view post width
+    &vh {
+        @for $i from 1 through 10 {
+            &-#{$i}0 {
+                height: #{#{$i}0#{'vh'}};
+            }
+            &_#{$i}5 {
+                height: #{#{$i}5#{'vh'}};
+            }
+        }
+    }
+}
+
+.h {
+    &-auto {
+        height: auto;
+    }
+    @for $i from 0 through 10 {
+        &-#{$i}0 {
+            height: #{$i}#{0%};
+            &-f {
+                height: #{$i}#{0%} !important;
+            }
+        }
+        &-#{$i}5 {
+            height: #{$i}#{5%};
+            &-f {
+                height: #{$i}#{5%} !important;
+            }
+        }
+    }
+    @each $keySize, $valueSize in $screen-breakpoints {
+        @include media-min($valueSize) {
+            &-#{$keySize} {
+                height: #{$valueSize};
+
+                @for $i from 0 through 10 {
+                    &-#{$i}0 {
+                        height: #{$i}#{0%};
+                    }
+                    &-#{$i}5 {
+                        height: #{$i}#{5%};
+                    }
+                }
+            }
+        }
+    }
+    // rem
+    &r {
+        @for $i from 1 through 10 {
+            &-#{$i} {
+                height: #{#{$i}#{'rem'}};
+                @for $z from 1 through 9 {
+                    &_#{$z} {
+                        height: #{#{$i}#{'.'}#{$z}#{'rem'}};
+                    }
+                }
+            }
+        }
+    }
+    // view port height
+    &v,
+    &vh {
+        @for $i from 1 through 10 {
+            &-#{$i}0 {
+                height: #{#{$i}0#{'vh'}};
+            }
+            &_#{$i}5 {
+                height: #{#{$i}5#{'vh'}};
+            }
+        }
+    }
+    // view post width
+    &vw {
+        @for $i from 1 through 10 {
+            &-#{$i}0 {
+                height: #{#{$i}0#{'vw'}};
+            }
+            &_#{$i}5 {
+                height: #{#{$i}5#{'vw'}};
+            }
+        }
+    }
+}
+
+.lh {
+    @for $i from 1 through 10 {
+        &-#{$i} {
+            line-height: #{$i};
+            @for $z from 1 through 9 {
+                &_#{$z} {
+                    line-height: #{#{$i}#{'.'}#{$z}};
+                }
+            }
+        }
+    }
+}
+
+// Padding
+.p {
+    @include addRemScale(#{'padding'});
+    @include addAxis(#{'padding'});
+    @include addPositions(#{'padding'});
+    @include addExponential(#{'padding'});
+    @include addBreakpoints(#{'padding'});
+}
+
+// Margin
+.m {
+    // auto
+    &x {
+        &-auto {
+            margin-left: auto;
+            margin-right: auto;
+            &-f {
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+        }
+    }
+    &y {
+        &-auto {
+            margin-top: auto;
+            margin-bottom: auto;
+            &-f {
+                margin-top: auto !important;
+                margin-bottom: auto !important;
+            }
+        }
+    }
+    @each $label, $value in $positions {
+        &#{$label}-auto {
+            margin-#{$value}: auto;
+            &-f {
+                margin-#{$value}: auto !important;
+            }
+        }
+    }
+
+    @include addRemScale(#{'margin'});
+    @include addAxis(#{'margin'});
+    @include addPositions(#{'margin'});
+    @include addExponential(#{'margin'});
+    @include addBreakpoints(#{'margin'});
+}
+
+.min {
+    &-w {
+        @for $i from 0 through 10 {
+            &-#{$i}0 {
+                min-width: #{$i}#{0%};
+                --min-width: #{$i}#{0%};
+            }
+            &-#{$i}5 {
+                min-width: #{$i}#{5%};
+                --min-width: #{$i}#{5%};
+            }
+        }
+        @each $keySize, $valueSize in $screen-breakpoints {
+            @include media-min($keySize) {
+                &-#{$keySize} {
+                    min-width: #{$valueSize};
+
+                    @for $i from 0 through 10 {
+                        &-#{$i}0 {
+                            min-width: #{$i}#{0%};
+                        }
+                        &-#{$i}5 {
+                            min-width: #{$i}#{5%};
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &-h {
+        @for $i from 0 through 10 {
+            &-#{$i}0 {
+                min-height: #{$i}#{0%};
+            }
+            &-#{$i}5 {
+                min-height: #{$i}#{5%};
+            }
+        }
+    }
+}
+
+.max {
+    &-w {
+        @for $i from 0 through 10 {
+            &-#{$i}0 {
+                max-width: #{$i}#{0%};
+                &-f,
+                &--force {
+                    max-width: #{$i}#{0%} !important;
+                }
+            }
+            &-#{$i}5 {
+                max-width: #{$i}#{5%};
+                &-f,
+                &--force {
+                    max-width: #{$i}#{5%} !important;
+                }
+            }
+        }
+        @each $keySize, $valueSize in $screen-breakpoints {
+            @include media-min($keySize) {
+                &-#{$keySize} {
+                    max-width: #{$valueSize};
+
+                    @for $i from 0 through 10 {
+                        &-#{$i}0 {
+                            max-width: #{$i}#{0%};
+                        }
+                        &-#{$i}5 {
+                            max-width: #{$i}#{5%};
+                        }
+                    }
+                }
+            }
+        }
+        &-break {
+            @extend .mx-auto;
+            @extend .max-w-md;
+            @extend .max-w-sm;
+            @extend .max-w-lg;
+        }
+    }
+
+    &-h {
+        @for $i from 0 through 10 {
+            &-#{$i}0 {
+                max-height: #{$i}#{0%};
+            }
+            &-#{$i}5 {
+                max-height: #{$i}#{5%};
+            }
+        }
+    }
+}
+
+.fz {
+    @for $i from 0 through 15 {
+        &-#{$i} {
+            font-size: #{#{$i}#{'rem'}};
+            &-f {
+                font-size: #{#{$i}#{'rem'}} !important;
+            }
+            @for $o from 0 through 9 {
+                &_#{$o} {
+                    font-size: #{#{$i}#{'.'}#{$o}#{'rem'}};
+                    &-f {
+                        font-size: #{#{$i}#{'.'}#{$o}#{'rem'}} !important;
+                    }
+                }
+            }
+        }
+    }
+    &-#{'p'} {
+        @for $i from 0 through 50 {
+            &-#{$i} {
+                font-size: #{#{$i}#{'px'}};
+
+                @for $o from 0 through 99 {
+                    &_#{$o} {
+                        font-size: #{#{$i}#{'.'}#{$o}#{'px'}};
+                    }
+                }
+            }
+        }
+    }
+}

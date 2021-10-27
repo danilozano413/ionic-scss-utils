@@ -1,0 +1,173 @@
+@mixin colorVariables($name, $scheme: light) {
+    //base
+    --color-#{'' + $name}: #{color($name, 'base', $scheme)};
+    // rgb
+    --color-#{'' + $name}-rgb: #{parseRgb(color($name, 'base', $scheme))};
+
+    //contrast
+    --color-#{'' + $name}-contrast: var(--color-#{opposed($name, $scheme)});
+    //contrast rgb
+    --color-#{'' + $name}-contrast-rgb: #{parseRgb(color(opposed($name, $scheme), 'base', $scheme))};
+}
+
+@mixin ionColorVariables($name, $scheme: light) {
+    //base
+    --ion-color-#{'' + $name}: var(--color-#{'' + $name});
+    // rgb
+    --ion-color-#{'' + $name}-rgb: var(--color-#{'' + $name}-rgb);
+
+    //contrast
+    --ion-color-#{'' + $name}-contrast: var(--color-#{'' + $name}-contrast);
+    //contrast rgb
+    --ion-color-#{'' + $name}-contrast-rgb: var(--color-#{'' + $name}-contrast-rgb);
+}
+
+@mixin colorConfigVariables($name, $config: base, $scheme: light) {
+    // variation
+    --color-#{'' + $name}-#{'' + $config}: #{color($name, $config, $scheme)};
+    // rgb
+    --color-#{'' + $name}-#{'' + $config}-rgb: #{parseRgb(color($name, $config, $scheme))};
+
+    //contrast
+    --color-#{'' + $name}-#{'' + $config}-contrast: var(--color-#{'' + $name}-#{opposedConfig($config)});
+    // contrast rgb
+    --color-#{'' + $name}-#{'' + $config}-contrast-rgb: #{parseRgb(color($name, opposedConfig($config), $scheme))};
+}
+@mixin ionColorConfigVariables($name, $config: base, $scheme: light) {
+    // variation
+    --ion-color-#{'' + $name}-#{'' + $config}: var(--color-#{'' + $name}-#{'' + $config});
+    // rgb
+    --ion-color-#{'' + $name}-#{'' + $config}-rgb: var(--color-#{'' + $name}-#{'' + $config}-rgb);
+
+    //contrast
+    --ion-color-#{'' + $name}-#{'' + $config}-contrast: var(--color-#{'' + $name}-#{'' + $config}-contrast);
+    // contrast rgb
+    --ion-color-#{'' + $name}-#{'' + $config}-contrast-rgb: var(--color-#{'' + $name}-#{'' + $config}-contrast-rgb);
+}
+
+// root color variables
+:root {
+    @each $name, $color in $colors_base {
+        @include colorVariables($name);
+        @include ionColorVariables($name);
+
+        @each $config, $value in $colors_config {
+            @include colorConfigVariables($name, $config);
+            @include ionColorConfigVariables($name, $config);
+        }
+    }
+}
+// media theme
+@each $scheme, $variables in $colors_scheme {
+    @media (prefers-color-scheme: #{$scheme}) {
+        body {
+            @each $name, $color in map-get($variables, 'colors') {
+                @include colorVariables($name, $scheme);
+                @include ionColorVariables($name, $scheme);
+                @each $config, $value in $colors_config {
+                    @include colorConfigVariables($name, $config, $scheme);
+                    @include ionColorConfigVariables($name, $config, $scheme);
+                }
+            }
+        }
+    }
+}
+
+// theme colors fallback
+body {
+    @each $scheme, $variables in $colors_scheme {
+        &.#{$scheme} {
+            @each $name, $color in map-get($variables, 'colors') {
+                @include colorVariables($name, $scheme);
+                @include ionColorVariables($name, $scheme);
+                @each $config, $value in $colors_config {
+                    @include colorConfigVariables($name, $config, $scheme);
+                    @include ionColorConfigVariables($name, $config, $scheme);
+                }
+            }
+        }
+    }
+}
+
+// colors clases
+@each $name, $color in $colors_base {
+    .ion-color-#{'' + $name} {
+        --ion-color-base: var(--ion-color-#{'' + $name}) !important;
+        --ion-color-base-rgb: var(--ion-color-#{'' + $name}-rgb) !important;
+        --ion-color-contrast: var(--ion-color-#{'' + $name}-contrast) !important;
+        --ion-color-contrast-rgb: var(--ion-color-#{'' + $name}-contrast-rgb) !important;
+        --ion-color-shade: var(--ion-color-#{'' + $name}-shade) !important;
+        --ion-color-tint: var(--ion-color-#{'' + $name}-tint) !important;
+    }
+}
+
+@each $scheme, $variables in $colors_scheme {
+    @media (prefers-color-scheme: #{$scheme}) {
+        #prefers-color-scheme,
+        meta[name='prefers-color-scheme'] {
+            content: '#{$scheme}';
+        }
+    }
+}
+
+.color {
+    @each $name, $color in $colors_base {
+        &-#{'' + $name},
+        &--#{'' + $name} {
+            color: var(--ion-color-#{'' + $name});
+            &-f,
+            &--force {
+                color: var(--ion-color-#{'' + $name}) !important;
+            }
+            @each $config, $value in $colors_config {
+                &-#{'' + $config} {
+                    color: var(--ion-color-#{'' + $name}-#{'' + $config});
+                    &-f,
+                    &--force {
+                        color: var(--ion-color-#{'' + $name}-#{'' + $config}) !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.bg {
+    @each $name, $color in $colors_base {
+        &-#{ '' + $name},
+        &--#{'' + $name} {
+            background-color: var(--background);
+            --background: var(--ion-color-#{'' + $name});
+            &-f,
+            &--force {
+                // background-color: var(--ion-color-#{'' + $name}) !important;
+                background-color: var(--background) !important;
+                --background: var(--ion-color-#{'' + $name}) !important;
+            }
+            @each $config, $value in $colors_config {
+                &-#{'' + $config} {
+                    background-color: var(--background);
+                    --background: var(--ion-color-#{'' + $name}-#{'' + $config});
+                    &-f,
+                    &--force {
+                        // background-color: var(--ion-color-#{'' + $name}-#{'' + $config}) !important;
+                        background-color: var(--background) !important;
+                        --background: var(--ion-color-#{'' + $name}-#{'' + $config}) !important;
+                    }
+                }
+            }
+        }
+    }
+    // add transparent
+    &-trans,
+    &-transparent,
+    &--transparent {
+        background-color: transparent;
+        --background: transparent;
+        &-f,
+        &--force {
+            background-color: transparent !important;
+            --background: transparent !important;
+        }
+    }
+}

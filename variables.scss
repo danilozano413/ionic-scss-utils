@@ -1,0 +1,37 @@
+@import './variables/variables_light.scss';
+@import './variables/variables_dark.scss';
+@import './variables/variables_contrast.scss';
+
+// color variable map
+$colors_scheme: (
+    light: $light,
+    dark: $dark,
+    contrast: $contrast
+);
+
+$colors_base: $colors_light;
+$colors_opposed: $colors_opposed_light;
+$colors_config: $colors_config_light;
+
+// generators configs
+$screen-breakpoints: (
+    xs: 0px,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
+) !default;
+
+$positions: (
+    b: 'bottom',
+    l: 'left',
+    r: 'right',
+    t: 'top'
+) !default;
+
+$displays: (
+    b: 'block',
+    n: 'none',
+    ib: 'inline-block',
+    f: 'flex'
+) !default;

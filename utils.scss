@@ -1,0 +1,261 @@
+@import 'functions.scss';
+@import './utils/colors.scss';
+@import './utils/button.scss';
+@import './utils/sizes.scss';
+
+@each $display, $displayValue in $displays {
+    .d-#{$display},
+    .d-#{$displayValue} {
+        display: #{$displayValue};
+    }
+
+    @each $keySize, $valueSize in $screen-breakpoints {
+        .d-#{$keySize}-#{$display},
+        .d-#{$keySize}-#{$displayValue} {
+            @include media-min($keySize) {
+                display: #{$displayValue};
+            }
+        }
+    }
+}
+
+.border {
+    &-all,
+    &--full {
+        border: var(--border-px, 0.05rem) var(--border-style, solid)
+            var(
+                --border-color,
+                var(--ion-item-border-color, var(--ion-border-color, var(--ion-color-step-250, #666177)))
+            );
+    }
+    @each $label, $value in $positions {
+        &-#{$label},
+        &-#{$value} {
+            border-#{$value}: var(--border-px, 0.05rem)
+                var(--border-style, solid)
+                var(
+                    --border-color,
+                    var(--ion-item-border-color, var(--ion-border-color, var(--ion-color-step-250, #666177)))
+                );
+        }
+    }
+
+    @each $name, $color in $colors_base {
+        &-#{'' + $name} {
+            --border-color: var(--ion-color-#{'' + $name});
+            border-color: var(--border-color, var(--ion-color-#{'' + $name}));
+            @each $config, $value in $colors_config {
+                &-#{'' + $config} {
+                    --border-color: var(--ion-color-#{'' + $name}-#{'' + $config});
+                    border-color: var(--border-color, var(--ion-color-#{'' + $name}-#{'' + $config}));
+                }
+            }
+        }
+    }
+    &--round {
+        border-radius: 50%;
+        @for $i from 0 through 5 {
+            &-#{$i} {
+                border-radius: #{#{$i}#{'rem'}};
+                &_5 {
+                    border-radius: #{#{$i}#{'.5rem'}};
+                }
+            }
+        }
+    }
+    &--vertical {
+        border-color: var(
+            --border-color,
+            var(--ion-item-border-color, var(--ion-border-color, var(--ion-color-step-250, #666177)))
+        );
+        border-style: var(--border-style, solid);
+        border-width: var(--border-width, var(--border-px) 0 var(--border-px) 0);
+    }
+    &--horizontal {
+        border-color: var(
+            --border-color,
+            var(--ion-item-border-color, var(--ion-border-color, var(--ion-color-step-250, #666177)))
+        );
+        border-style: var(--border-style, solid);
+        border-width: var(--border-width, 0 var(--border-px) 0 var(--border-px));
+    }
+    &--none {
+        border: none;
+        --border-px: 0;
+    }
+}
+
+.text {
+    &--uppercase,
+    &-upper {
+        text-transform: uppercase;
+    }
+    &--lowercase,
+    &-lower {
+        text-transform: lowercase;
+    }
+    &--notrans,
+    &-notr {
+        text-transform: none;
+    }
+    &--bold,
+    &-b,
+    &-bold,
+    &.bold {
+        font-weight: bold;
+        &-f,
+        &--force {
+            font-weight: bold !important;
+        }
+    }
+    &--normal,
+    &-n,
+    &-normal,
+    &.normal {
+        font-weight: normal;
+    }
+
+    &--left,
+    &-left,
+    &-l {
+        text-align: left;
+    }
+    &--right,
+    &-right,
+    &-r {
+        text-align: right;
+    }
+    &--center,
+    &-center,
+    &-c {
+        text-align: center;
+    }
+    &--italic,
+    &-italic,
+    &-i {
+        font-style: italic;
+    }
+
+    &-ellipsis {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+}
+
+.fz-small {
+    font-size: var(--font-size-small);
+    &-f,
+    &--force {
+        font-size: var(--font-size-small) !important;
+    }
+}
+.fz,
+.fz-standard {
+    font-size: var(--font-size-standard);
+    &-f,
+    &--force {
+        font-size: var(--font-size-standard) !important;
+    }
+}
+.fz-large {
+    font-size: var(--font-size-large);
+    &-f,
+    &--force {
+        font-size: var(--font-size-large) !important;
+    }
+}
+
+.align {
+    &--top,
+    &-top,
+    &-t {
+        vertical-align: top;
+    }
+    &--middle,
+    &-middle,
+    &-m {
+        vertical-align: middle;
+    }
+    &--bottom,
+    &-bottom,
+    &-b {
+        vertical-align: bottom;
+    }
+}
+
+.rotate {
+    &-45 {
+        transform: rotate(45deg);
+    }
+
+    &-90 {
+        transform: rotate(90deg);
+    }
+    &-180 {
+        transform: rotate(180deg);
+    }
+    &-135 {
+        transform: rotate(135deg);
+    }
+
+    &-180 {
+        transform: rotate(180deg);
+    }
+
+    &-360 {
+        transform: rotate(360deg);
+    }
+}
+
+.spin {
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: spin;
+    -moz-animation-duration: 2s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -ms-animation-name: spin;
+    -ms-animation-duration: 2s;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: linear;
+
+    animation-name: spin;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+@-ms-keyframes spin {
+    from {
+        -ms-transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+    }
+}
+@-moz-keyframes spin {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

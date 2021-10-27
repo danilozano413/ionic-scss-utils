@@ -1,0 +1,267 @@
+@import 'variables.scss';
+/// Parse color hexadecimal to Rgb
+/// @access public
+/// @param {Color} $color - color to parse
+/// @return {Color}
+@function parseRgb($color) {
+    @return #{red($color), green($color), blue($color)};
+}
+
+/// Slightly lighten a color
+/// @access public
+/// @param {Color} $color - color to tint
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color}
+@function tint($color, $percentage: 15%) {
+    @return mix(white, $color, $percentage);
+}
+
+/// Slightly darken a color
+/// @access public
+/// @param {Color} $color - color to shade
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color}
+@function shade($color, $percentage: 15%) {
+    @return mix(black, $color, $percentage);
+}
+
+/// Slightly lighten a color
+/// @access public
+/// @param {Color} $color - color to light
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color}
+@function light($color, $percentage: 30%) {
+    @return lighten($color, $percentage);
+}
+
+/// Slightly darken  a color
+/// @access public
+/// @param {Color} $color - color to dark
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color}
+@function dark($color, $percentage: 30%) {
+    @return darken($color, $percentage);
+}
+
+/// Slightly soft transparent a color
+/// @access public
+/// @param {Color} $color - color to transparentize
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color}
+@function opacity($color, $percentage: 0.8) {
+    @return transparentize($color, $percentage);
+}
+
+/// Slightly  transparent a color
+/// @access public
+/// @param {Color} $color - color to transparentize
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color}
+@function trans($color, $percentage: 0.4) {
+    @return transparentize($color, $percentage);
+}
+
+/// Slightly  more transparent a color
+/// @access public
+/// @param {Color} $color - color to transparentize
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color}
+@function lucid($color, $percentage: 0.2) {
+    @return transparentize($color, $percentage);
+}
+
+// retrieve color from $colors map ie. `color(primary, base)`
+@function color($color-name, $color-variant: base, $color-schema: light) {
+    @if $color-variant == 'base' {
+        @return map-get(map-get(map-get($colors_scheme, $color-schema), 'colors'), $color-name);
+    } @else {
+        @return call(
+            get-function($color-variant),
+            map-get(map-get(map-get($colors_scheme, $color-schema), 'colors'), $color-name),
+            map-get($colors_config, $color-variant)
+        );
+    }
+}
+
+/// Triangle helper mixin
+/// @param {Direction} $direction - Triangle direction, either `top`, `right`, `bottom` or `left`
+/// @param {Color} $color [currentcolor] - Triangle color
+/// @param {Length} $size [1em] - Triangle size
+@mixin triangle($direction: top, $color: currentcolor, $size: 1em) {
+    @if not index(top right bottom left, $direction) {
+        @error "Direction must be either `top`, `right`, `bottom` or `left`.";
+    }
+
+    width: 0;
+    height: 0;
+    content: '';
+    z-index: 2;
+    border-#{opposite-position($direction)}: ($size * 1.5) solid $color;
+
+    $perpendicular-borders: $size solid transparent;
+
+    @if $direction == top or $direction == bottom {
+        border-left: $perpendicular-borders;
+        border-right: $perpendicular-borders;
+    } @else if $direction == right or $direction == left {
+        border-bottom: $perpendicular-borders;
+        border-top: $perpendicular-borders;
+    }
+}
+
+// retrieve color opposed
+@function opposed($color: primary, $color-schema: light) {
+    $opposed_colors: map-get(map-get($colors_scheme, $color-schema), 'opposed');
+
+    $opposed: map-get($opposed_colors, 'default');
+    @each $colorName, $opposedName in $opposed_colors {
+        @if ($color == $colorName) {
+            $opposed: $opposedName;
+        }
+    }
+    @return $opposed;
+}
+
+// retrieve color opposed
+@function opposedConfig($color-variant: base) {
+    @if ($color-variant == 'base') {
+        @return 'shade';
+    } @else if ($color-variant == 'tint') {
+        @return 'base';
+    } @else if ($color-variant == 'shade') {
+        @return 'base';
+    } @else if ($color-variant == 'dark') {
+        @return 'shade';
+    } @else if ($color-variant == 'light') {
+        @return 'tint';
+    } @else if ($color-variant == 'lucid') {
+        @return 'trans';
+    } @else if ($color-variant == 'trans') {
+        @return 'opacity';
+    } @else if ($color-variant == 'opacity') {
+        @return 'base';
+    }
+    @return 'base';
+}
+
+/// Gets contrast color variation
+/// @param {Color} $color [currentcolor] - Triangle color
+/// @return  {String} color-variation
+@function contrast($color: primary, $variant: base) {
+    @return opposed($color) + '-' + opposedConfig($variant);
+}
+
+@mixin media-min($size) {
+    @media (min-width: #{map-get($screen-breakpoints,$size)}) {
+        @content;
+    }
+}
+
+@mixin media-max($size) {
+    @media (max-width: #{map-get($screen-breakpoints,$size)}) {
+        @content;
+    }
+}
+
+@mixin media-landscape() {
+    @media screen and (orientation: landscape) {
+        @content;
+    }
+}
+
+@mixin media-portrait() {
+    @media screen and (orientation: portrait) {
+        @content;
+    }
+}
+
+@function pow($number, $exponent) {
+    $value: 1;
+
+    @if $exponent > 0 {
+        @for $i from 1 through $exponent {
+            $value: $value * $number;
+        }
+    }
+
+    @return $value;
+}
+
+/// Apply property value and adds class to force it
+/// @param {String} $property  Css property name
+/// @return {String} $value value to set
+@mixin andForce($property, $value) {
+    #{$property}: #{$value};
+    &-f,
+    &--force {
+        #{$property}: #{$value} !important;
+    }
+}
+
+/// Apply property modify exponential and adds class to force it
+/// @param {String} $property  Css property name
+@mixin addExponential($property) {
+    &-#{'x'} {
+        @for $i from 0 through 12 {
+            &#{$i} {
+                @include andForce(#{$property}, #{#{pow(2, $i)}#{'px'}});
+            }
+        }
+    }
+}
+@mixin addRemScale($property) {
+    @for $i from 0 through 15 {
+        &-#{$i} {
+            @include andForce(#{$property}, #{#{$i}#{'rem'}});
+
+            @for $o from 0 through 9 {
+                &_#{$o} {
+                    @include andForce(#{$property}, #{#{$i}#{'.'}#{$o}#{'rem'}});
+                }
+            }
+        }
+    }
+}
+
+@mixin addPositions($property) {
+    @each $positionAbbr, $position in $positions {
+        &#{$positionAbbr} {
+            @content;
+            @include addRemScale(#{#{$property}#{'-'}#{$position}});
+            @include addExponential(#{#{$property}#{'-'}#{$position}});
+        }
+    }
+}
+
+@mixin addAxis($property) {
+    &#{'x'} {
+        @content;
+        @include addRemScale(#{#{$property}#{'-'}#{'left'}});
+        @include addRemScale(#{#{$property}#{'-'}#{'right'}});
+        @include addExponential(#{#{$property}#{'-'}#{'left'}});
+        @include addExponential(#{#{$property}#{'-'}#{'right'}});
+    }
+    // Axis Y
+    &#{'y'} {
+        @content;
+        @include addRemScale(#{#{$property}#{'-'}#{'top'}});
+        @include addRemScale(#{#{$property}#{'-'}#{'bottom'}});
+        @include addExponential(#{#{$property}#{'-'}#{'top'}});
+        @include addExponential(#{#{$property}#{'-'}#{'bottom'}});
+    }
+}
+
+@mixin addBreakpoints($property) {
+    // Media Breakpoints
+    @each $keySize, $valueSize in $screen-breakpoints {
+        @include media-min($keySize) {
+            &-#{$keySize} {
+                @content;
+                @include addRemScale(#{$property});
+                @include addAxis(#{$property});
+                @include addPositions(#{$property});
+                @include addExponential(#{$property});
+            }
+        }
+    }
+}

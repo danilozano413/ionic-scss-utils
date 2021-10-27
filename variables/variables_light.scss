@@ -1,0 +1,36 @@
+// light color theme variable map
+
+$colors_light: (
+    primary: #00b8db,
+    secondary: #69c61d,
+    tertiary: #efaf00,
+    success: #69c61d,
+    warning: #efaf00,
+    danger: #ff4848,
+    dark: #27283b,
+    medium: #e9ecef,
+    light: #f8f9fa,
+    gray: #adb5bd,
+    purple: #ba7df7
+);
+
+$colors_config_light: (
+    tint: 15%,
+    shade: 15%,
+    light: 30%,
+    dark: 30%,
+    opacity: 0.2,
+    trans: 0.5,
+    lucid: 0.8
+);
+
+$colors_opposed_light: (
+    light: primary,
+    default: light
+);
+
+$light: (
+    colors: $colors_light,
+    config: $colors_config_light,
+    opposed: $colors_opposed_light
+);

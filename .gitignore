@@ -3,3 +3,4 @@
 *.sass.map
 *.scss.map
 node_modules/
+scss-utils-*.tgz

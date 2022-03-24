@@ -25,6 +25,28 @@
                     display: #{$displayValue} !important;
                 }
             }
+            &-up {
+                @include media-min($keySize) {
+                    display: #{$displayValue};
+                }
+                &--force,
+                &-f {
+                    @include media-min($keySize) {
+                        display: #{$displayValue} !important;
+                    }
+                }
+            }
+            &-down {
+                @include media-max($keySize) {
+                    display: #{$displayValue};
+                }
+                &--force,
+                &-f {
+                    @include media-max($keySize) {
+                        display: #{$displayValue} !important;
+                    }
+                }
+            }
         }
     }
 }

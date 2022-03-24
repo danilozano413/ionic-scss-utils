@@ -7,6 +7,10 @@
     .d-#{$display},
     .d-#{$displayValue} {
         display: #{$displayValue};
+        &--force,
+        &-f {
+            display: #{$displayValue} !important;
+        }
     }
 
     @each $keySize, $valueSize in $screen-breakpoints {
@@ -14,6 +18,12 @@
         .d-#{$keySize}-#{$displayValue} {
             @include media-min($keySize) {
                 display: #{$displayValue};
+            }
+            &--force,
+            &-f {
+                @include media-min($keySize) {
+                    display: #{$displayValue} !important;
+                }
             }
         }
     }
@@ -113,6 +123,10 @@
     &-normal,
     &.normal {
         font-weight: normal;
+        &--force,
+        &-f {
+            font-weight: normal !important;
+        }
     }
 
     &--left,

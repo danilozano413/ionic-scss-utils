@@ -1,7 +1,7 @@
 {
-    "name": "scss-utils",
+    "name": "ionic-scss-utils",
     "version": "2.1.0",
-    "description": "Some utils for your project on scss ",
+    "description": "Some utils for your ionic project on scss ",
     "main": "index.scss",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,7 +16,7 @@
         "scss",
         "utils"
     ],
-    "author": "Dani",
+    "author": "Dani Lozano",
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/danilozano413/scss-utils/issues"

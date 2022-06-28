@@ -1,4 +1,4 @@
-# scss-utils
+# Ionic Scss Utils
 
 ## Installation
 
@@ -27,8 +27,17 @@ or
 Create your variables.scss and include before import this package
 
 ```  scss
-    ./variables.scss
+    @import ./variables.scss
     @import '~ionic-scss-utils/utils.scss';
+```
+
+## Libraries compatibility
+
+We recommend use other class utils (as tailwind) on large projects. For this, the better solution is use our color generator only
+
+```  scss
+    @import ./variables.scss
+    @import '~ionic-scss-utils/utils/colors.scss';
 ```
 
 ### Borders

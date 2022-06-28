@@ -45,16 +45,19 @@
     --ion-color-#{'' + $name}-#{'' + $config}-contrast-rgb: var(--color-#{'' + $name}-#{'' + $config}-contrast-rgb);
 }
 
+@mixin colorContent($name, $scheme: light) {
+    @include colorVariables($name, $scheme);
+    @include ionColorVariables($name, $scheme);
+    @each $config, $value in $colors_config {
+        @include colorConfigVariables($name, $config, $scheme);
+        @include ionColorConfigVariables($name, $config, $scheme);
+    }
+}
+
 // root color variables
 :root {
     @each $name, $color in $colors_base {
-        @include colorVariables($name);
-        @include ionColorVariables($name);
-
-        @each $config, $value in $colors_config {
-            @include colorConfigVariables($name, $config);
-            @include ionColorConfigVariables($name, $config);
-        }
+        @include colorContent($name);
     }
 }
 // media theme
@@ -62,12 +65,7 @@
     @media (prefers-color-scheme: #{$scheme}) {
         body {
             @each $name, $color in map-get($variables, 'colors') {
-                @include colorVariables($name, $scheme);
-                @include ionColorVariables($name, $scheme);
-                @each $config, $value in $colors_config {
-                    @include colorConfigVariables($name, $config, $scheme);
-                    @include ionColorConfigVariables($name, $config, $scheme);
-                }
+                @include colorContent($name, $scheme);
             }
         }
     }
@@ -78,16 +76,13 @@ body {
     @each $scheme, $variables in $colors_scheme {
         &.#{$scheme} {
             @each $name, $color in map-get($variables, 'colors') {
-                @include colorVariables($name, $scheme);
-                @include ionColorVariables($name, $scheme);
-                @each $config, $value in $colors_config {
-                    @include colorConfigVariables($name, $config, $scheme);
-                    @include ionColorConfigVariables($name, $config, $scheme);
-                }
+                @include colorContent($name, $scheme);
             }
         }
     }
 }
+
+@import 'dark.scss';
 
 // colors clases
 @each $name, $color in $colors_base {

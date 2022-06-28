@@ -8,10 +8,10 @@
         }
     }
     @each $keySize, $valueSize in $screen-breakpoints {
-        @include media-min($valueSize) {
-            width: #{$valueSize};
-
+        @include media-min($keySize) {
             &-#{$keySize} {
+                width: #{$valueSize};
+
                 @for $i from 0 through 10 {
                     &-#{$i}0 {
                         width: #{$i}#{0%};
@@ -82,7 +82,7 @@
         }
     }
     @each $keySize, $valueSize in $screen-breakpoints {
-        @include media-min($valueSize) {
+        @include media-min($keySize) {
             &-#{$keySize} {
                 height: #{$valueSize};
 
@@ -97,6 +97,7 @@
             }
         }
     }
+
     // rem
     &r {
         @for $i from 1 through 10 {

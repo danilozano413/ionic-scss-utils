@@ -80,11 +80,12 @@ body {
             }
         }
     }
+    &.dark {
+        @import 'dark.scss';
+    }
 }
 
-@import 'dark.scss';
-
-// colors clases
+// colors classes
 @each $name, $color in $colors_base {
     .ion-color-#{'' + $name} {
         --ion-color-base: var(--ion-color-#{'' + $name}) !important;

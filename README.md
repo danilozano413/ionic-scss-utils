@@ -10,16 +10,18 @@
 
 ## Usage
 
-Add scss or css to your styles files
+Add precompiled scss to your global style scss file
 
 ``` scss
-    @import '~ionic-scss-utils/utils.scss';
+    @import '~ionic-scss-utils';
 ```  
 
 or
 
+Add compiled css
+
 ``` scss
-    @import '~ionic-scss-utils/css/utils.css';
+    @import '~ionic-scss-utils/css';
 ```  
 
 ## Use own colors
@@ -27,8 +29,8 @@ or
 Create your variables.scss and include before import this package
 
 ```  scss
-    @import ./variables.scss;
-    @import '~ionic-scss-utils/utils.scss';
+    @import './variables.scss';
+    @import '~ionic-scss-utils';
 ```
 
 ## Libraries compatibility
@@ -36,7 +38,7 @@ Create your variables.scss and include before import this package
 We recommend use other class utils (as tailwind) on large projects. For this, the better solution is use our color generator only
 
 ```  scss
-    @import ./variables.scss;
+    @import "./variables.scss";
     @import '~ionic-scss-utils/utils/colors.scss';
 ```
 

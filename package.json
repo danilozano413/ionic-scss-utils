@@ -11,7 +11,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/danilozano413/scss-utils.git"
+        "url": "git+https://github.com/danilozano413/ionic-scss-utils.git"
     },
     "keywords": [
         "scss",
@@ -20,9 +20,9 @@
     "author": "Dani Lozano",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/danilozano413/scss-utils/issues"
+        "url": "https://github.com/danilozano413/ionic-scss-utils/issues"
     },
-    "homepage": "https://github.com/danilozano413/scss-utils#readme",
+    "homepage": "https://github.com/danilozano413/ionic-scss-utils#readme",
     "devDependencies": {
         "gulp": "^4.0.2",
         "gulp-sass": "^5.1.0",

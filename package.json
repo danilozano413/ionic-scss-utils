@@ -23,7 +23,7 @@
         "url": "https://github.com/danilozano413/ionic-scss-utils/issues"
     },
     "homepage": "https://github.com/danilozano413/ionic-scss-utils#readme",
-    "dependencies": {
+    "peerDependencies": {
         "scss-colors-variables": "^1.0.2"
     },
     "devDependencies": {

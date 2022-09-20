@@ -7,7 +7,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "node-sass --recursive --output css --source-map true --source-map-contents --importer node_modules/node-sass-package-importer/dist/cli.js index.scss",
         "watch": "npm run build --watch ",
-        "publish": "np --no-tests"
+        "npm-publish": "np --no-tests"
     },
     "repository": {
         "type": "git",
@@ -24,7 +24,7 @@
     },
     "homepage": "https://github.com/danilozano413/ionic-scss-utils#readme",
     "dependencies": {
-        "scss-colors-variables": "^1.0.1"
+        "scss-colors-variables": "^1.0.2"
     },
     "devDependencies": {
         "gulp": "^4.0.2",

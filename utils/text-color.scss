@@ -1,0 +1,22 @@
+.text-color,
+.text {
+    @each $name, $color in $colors_base {
+        &-#{'' + $name},
+        &--#{'' + $name} {
+            color: var(--ion-color-#{'' + $name});
+            &-f,
+            &--force {
+                color: var(--ion-color-#{'' + $name}) !important;
+            }
+            @each $config, $value in $colors_config {
+                &-#{'' + $config} {
+                    color: var(--ion-color-#{'' + $name}-#{'' + $config});
+                    &-f,
+                    &--force {
+                        color: var(--ion-color-#{'' + $name}-#{'' + $config}) !important;
+                    }
+                }
+            }
+        }
+    }
+}

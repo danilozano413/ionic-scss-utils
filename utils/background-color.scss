@@ -1,0 +1,39 @@
+.bg {
+    @each $name, $color in $colors_base {
+        &-#{ '' + $name},
+        &--#{'' + $name} {
+            background-color: var(--background);
+            --background: var(--ion-color-#{'' + $name});
+            &-f,
+            &--force {
+                // background-color: var(--ion-color-#{'' + $name}) !important;
+                background-color: var(--background) !important;
+                --background: var(--ion-color-#{'' + $name}) !important;
+            }
+            @each $config, $value in $colors_config {
+                &-#{'' + $config} {
+                    background-color: var(--background);
+                    --background: var(--ion-color-#{'' + $name}-#{'' + $config});
+                    &-f,
+                    &--force {
+                        // background-color: var(--ion-color-#{'' + $name}-#{'' + $config}) !important;
+                        background-color: var(--background) !important;
+                        --background: var(--ion-color-#{'' + $name}-#{'' + $config}) !important;
+                    }
+                }
+            }
+        }
+    }
+    // add transparent
+    &-trans,
+    &-transparent,
+    &--transparent {
+        background-color: transparent;
+        --background: transparent;
+        &-f,
+        &--force {
+            background-color: transparent !important;
+            --background: transparent !important;
+        }
+    }
+}

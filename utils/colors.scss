@@ -3,26 +3,44 @@
 
 @mixin ionColorVariables($name, $scheme: light) {
     //base
-    --ion-color-#{'' + $name}: var(--color-#{'' + $name});
+    --ion-color-#{'' + $name}: var(--color-#{'' + $name}, #{color($name, 'base', $scheme)});
     // rgb
-    --ion-color-#{'' + $name}-rgb: var(--color-#{'' + $name}-rgb);
+    --ion-color-#{'' + $name}-rgb: var(--color-#{'' + $name}-rgb, #{parseRgb(color($name, 'base', $scheme))});
 
     //contrast
-    --ion-color-#{'' + $name}-contrast: var(--color-#{'' + $name}-contrast);
+    --ion-color-#{'' + $name}-contrast: var(
+        --color-#{'' + $name}-contrast,
+        var(--color-#{opposed($name, $scheme)}, #{color(opposed($name, $scheme), 'base', $scheme)})
+    );
     //contrast rgb
-    --ion-color-#{'' + $name}-contrast-rgb: var(--color-#{'' + $name}-contrast-rgb);
+    --ion-color-#{'' + $name}-contrast-rgb: var(
+        --color-#{'' + $name}-contrast-rgb,
+        #{parseRgb(color(opposed($name, $scheme), 'base', $scheme))}
+    );
 }
 
 @mixin ionColorConfigVariables($name, $config: base, $scheme: light) {
     // variation
-    --ion-color-#{'' + $name}-#{'' + $config}: var(--color-#{'' + $name}-#{'' + $config});
+    --ion-color-#{'' + $name}-#{'' + $config}: var(
+        --color-#{'' + $name}-#{'' + $config},
+        #{color($name, $config, $scheme)}
+    );
     // rgb
-    --ion-color-#{'' + $name}-#{'' + $config}-rgb: var(--color-#{'' + $name}-#{'' + $config}-rgb);
+    --ion-color-#{'' + $name}-#{'' + $config}-rgb: var(
+        --color-#{'' + $name}-#{'' + $config}-rgb,
+        #{parseRgb(color($name, $config, $scheme))}
+    );
 
     //contrast
-    --ion-color-#{'' + $name}-#{'' + $config}-contrast: var(--color-#{'' + $name}-#{'' + $config}-contrast);
+    --ion-color-#{'' + $name}-#{'' + $config}-contrast: var(
+        --color-#{'' + $name}-#{'' + $config}-contrast,
+        var(--color-#{'' + $name}-#{opposedConfig($config)}, color($name, opposedConfig($config), $scheme))
+    );
     // contrast rgb
-    --ion-color-#{'' + $name}-#{'' + $config}-contrast-rgb: var(--color-#{'' + $name}-#{'' + $config}-contrast-rgb);
+    --ion-color-#{'' + $name}-#{'' + $config}-contrast-rgb: var(
+        --color-#{'' + $name}-#{'' + $config}-contrast-rgb,
+        #{parseRgb(color($name, opposedConfig($config), $scheme))}
+    );
 }
 
 @mixin colorContent($name, $scheme: light) {
@@ -40,6 +58,7 @@
         @include colorContent($name);
     }
 }
+
 // media theme
 @each $scheme, $variables in $colors_scheme {
     @media (prefers-color-scheme: #{$scheme}) {

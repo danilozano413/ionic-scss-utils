@@ -24,7 +24,7 @@
     },
     "homepage": "https://github.com/danilozano413/ionic-scss-utils#readme",
     "peerDependencies": {
-        "scss-colors-variables": "^1.1.0"
+        "scss-colors-variables": "^1.2.0"
     },
     "devDependencies": {
         "gulp": "^4.0.2",

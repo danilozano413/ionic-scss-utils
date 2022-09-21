@@ -84,18 +84,28 @@ body {
 // colors classes
 .ion-color {
     @each $name, $color in $colors_base {
-        &-#{'' + $name} {
+        &-#{'' + $name},
+        &--#{'' + $name} {
             //base
-            --ion-color-base: var(--ion-color-#{'' + $name}) !important;
+            --ion-color-base: var(--ion-color-#{'' + $name}, #{color($name)}) !important;
             // rgb
-            --ion-color-base-rgb: var(--ion-color-#{'' + $name}-rgb) !important;
+            --ion-color-base-rgb: var(--ion-color-#{'' + $name}-rgb, #{parseRgb(color($name))}) !important;
             //contrast
-            --ion-color-contrast: var(--ion-color-#{'' + $name}-contrast) !important;
+            --ion-color-contrast: var(
+                --ion-color-#{'' + $name}-contrast,
+                var(--ion-color-#{opposed($name)}, #{color(opposed($name))})
+            ) !important;
             //contrast rgb
-            --ion-color-contrast-rgb: var(--ion-color-#{'' + $name}-contrast-rgb) !important;
+            --ion-color-contrast-rgb: var(
+                --ion-color-#{'' + $name}-contrast-rgb,
+                #{parseRgb(color(opposed($name)))}
+            ) !important;
 
             @each $config, $value in $colors_config {
-                --ion-color-#{'' + $config}: var(--ion-color-#{'' + $name}-#{'' + $config}) !important;
+                --ion-color-#{'' + $config}: var(
+                    --ion-color-#{'' + $name}-#{'' + $config},
+                    #{color($name, $config)}
+                ) !important;
             }
         }
     }

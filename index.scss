@@ -1,1 +1,11 @@
-@import './utils.scss';
+@import 'functions.scss';
+
+@import './utils/colors.scss';
+@import './utils/display.scss';
+@import './utils/background-color.scss';
+@import './utils/border.scss';
+@import './utils/button.scss';
+@import './utils/sizes.scss';
+@import './utils/spin.scss';
+@import './utils/align.scss';
+@import './utils/rotate.scss';

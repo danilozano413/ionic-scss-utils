@@ -1,0 +1,71 @@
+@import './utils/text-color.scss';
+@import './utils/font-size.scss';
+
+.text {
+    &--uppercase,
+    &-upper {
+        text-transform: uppercase;
+    }
+
+    &--lowercase,
+    &-lower {
+        text-transform: lowercase;
+    }
+
+    &--notrans,
+    &-notr {
+        text-transform: none;
+    }
+
+    &--bold,
+    &-b,
+    &-bold,
+    &.bold {
+        font-weight: bold;
+        &-f,
+        &--force {
+            font-weight: bold !important;
+        }
+    }
+
+    &--normal,
+    &-n,
+    &-normal,
+    &.normal {
+        font-weight: normal;
+        &--force,
+        &-f {
+            font-weight: normal !important;
+        }
+    }
+
+    &--left,
+    &-left,
+    &-l {
+        text-align: left;
+    }
+
+    &--right,
+    &-right,
+    &-r {
+        text-align: right;
+    }
+
+    &--center,
+    &-center,
+    &-c {
+        text-align: center;
+    }
+
+    &--italic,
+    &-italic,
+    &-i {
+        font-style: italic;
+    }
+
+    &-ellipsis {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+}

@@ -1,0 +1,22 @@
+.fz-small {
+    font-size: var(--font-size-small);
+    &-f,
+    &--force {
+        font-size: var(--font-size-small) !important;
+    }
+}
+.fz,
+.fz-standard {
+    font-size: var(--font-size-standard);
+    &-f,
+    &--force {
+        font-size: var(--font-size-standard) !important;
+    }
+}
+.fz-large {
+    font-size: var(--font-size-large);
+    &-f,
+    &--force {
+        font-size: var(--font-size-large) !important;
+    }
+}

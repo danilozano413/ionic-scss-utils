@@ -1,0 +1,47 @@
+@each $display, $displayValue in $displays {
+    .d-#{$display},
+    .d-#{$displayValue} {
+        display: #{$displayValue};
+        &--force,
+        &-f {
+            display: #{$displayValue} !important;
+        }
+    }
+
+    @each $keySize, $valueSize in $screen-breakpoints {
+        .d-#{$keySize}-#{$display},
+        .d-#{$keySize}-#{$displayValue} {
+            @include media-min($keySize) {
+                display: #{$displayValue};
+            }
+            &--force,
+            &-f {
+                @include media-min($keySize) {
+                    display: #{$displayValue} !important;
+                }
+            }
+            &-up {
+                @include media-min($keySize) {
+                    display: #{$displayValue};
+                }
+                &--force,
+                &-f {
+                    @include media-min($keySize) {
+                        display: #{$displayValue} !important;
+                    }
+                }
+            }
+            &-down {
+                @include media-max($keySize) {
+                    display: #{$displayValue};
+                }
+                &--force,
+                &-f {
+                    @include media-max($keySize) {
+                        display: #{$displayValue} !important;
+                    }
+                }
+            }
+        }
+    }
+}

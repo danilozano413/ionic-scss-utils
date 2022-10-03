@@ -1,0 +1,17 @@
+.align {
+    &--top,
+    &-top,
+    &-t {
+        vertical-align: top;
+    }
+    &--middle,
+    &-middle,
+    &-m {
+        vertical-align: middle;
+    }
+    &--bottom,
+    &-bottom,
+    &-b {
+        vertical-align: bottom;
+    }
+}

@@ -53,7 +53,8 @@
 }
 
 // root color variables
-:root {
+:root,
+body {
     @each $name, $color in $colors_base {
         @include colorContent($name);
     }
@@ -70,7 +71,7 @@
     }
 }
 
-// theme colors fallback
+// theme colors fallback by class
 body {
     @each $scheme, $variables in $colors_scheme {
         &.#{$scheme} {

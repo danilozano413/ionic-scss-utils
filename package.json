@@ -5,7 +5,7 @@
     "main": "index.scss",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "node-sass --recursive --output css --source-map true --source-map-contents --importer node_modules/node-sass-package-importer/dist/cli.js index.scss",
+        "build": "node-sass --recursive --output css --source-map true --source-map-contents --importer node_modules/node-sass-import index.scss",
         "watch": "npm run build --watch ",
         "npm-publish": "np --no-tests"
     },
@@ -29,8 +29,8 @@
     "devDependencies": {
         "gulp": "^4.0.2",
         "gulp-sass": "^5.1.0",
-        "node-sass": "^7.0.3",
-        "node-sass-package-importer": "^5.3.2",
-        "np": "^7.6.2"
+        "node-sass": "^8.0.0",
+        "node-sass-import": "^2.0.1",
+        "np": "^7.6.3"
     }
 }

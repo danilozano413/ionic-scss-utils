@@ -1,5 +1,5 @@
-@import 'scss-colors-variables/variables.scss';
-@import './variables/variables_dark.scss';
+@import 'scss-colors-variables/src/variables';
+@import 'variables_dark';
 
 // generators configs
 $screen-breakpoints: (

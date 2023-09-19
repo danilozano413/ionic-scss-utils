@@ -29,7 +29,7 @@ Add compiled css
 Create your variables.scss and include before import this package
 
 ```  scss
-    @import './variables.scss';
+    @import './variables';
     @import 'ionic-scss-utils';
 ```
 
@@ -38,8 +38,8 @@ Create your variables.scss and include before import this package
 We recommend use other class utils (as Tailwind) on large projects. For this, the better solution is use our color generator only
 
 ```  scss
-    @import "./variables.scss";
-    @import 'ionic-scss-utils/utils/colors.scss';
+    @import "./variables";
+    @import 'ionic-scss-utils/src/utils/colors';
 ```
 
 ### Borders

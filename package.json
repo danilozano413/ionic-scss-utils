@@ -5,8 +5,8 @@
     "main": "index.scss",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "sass  *.scss:css/*.css",
-        "watch": "npm run build --watch ",
+        "build": "gulp scss",
+        "watch": "gulp watch ",
         "npm-publish": "np --no-tests"
     },
     "repository": {
@@ -31,9 +31,6 @@
         "gulp-sass-glob": "^1.1.0",
         "np": "^8.0.4",
         "sass": "^1.67.0",
-        "scss-colors-variables": "*"
-    },
-    "peerDependencies": {
         "scss-colors-variables": "^1.4.0"
     }
 }

@@ -31,6 +31,6 @@
         "gulp-sass-glob": "^1.1.0",
         "np": "^8.0.4",
         "sass": "^1.67.0",
-        "scss-colors-variables": "^1.4.0"
+        "scss-colors-variables": "^2.0.1"
     }
 }

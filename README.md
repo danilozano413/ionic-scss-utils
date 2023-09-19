@@ -39,7 +39,7 @@ We recommend use other class utils (as Tailwind) on large projects. For this, th
 
 ```  scss
     @import "./variables";
-    @import 'ionic-scss-utils/src/utils/colors';
+    @import 'ionic-scss-utils/colors';
 ```
 
 ### Borders

@@ -1,6 +1,6 @@
 {
     "name": "ionic-scss-utils",
-    "version": "5.1.0",
+    "version": "6.0.0",
     "description": "Some utils for your ionic project on scss ",
     "main": "index.scss",
     "engines": {

@@ -26,6 +26,9 @@
         "url": "https://github.com/danilozano413/ionic-scss-utils/issues"
     },
     "homepage": "https://github.com/danilozano413/ionic-scss-utils#readme",
+    "dependencies": {
+        "scss-colors-variables": "^3.0.0"
+    },
     "devDependencies": {
         "autoprefixer": "^10.4.19",
         "gulp": "^5.0.0",
@@ -33,7 +36,6 @@
         "gulp-sass": "^5.1.0",
         "gulp-sass-glob": "^1.1.0",
         "np": "^10.0.7",
-        "sass": "^1.77.8",
-        "scss-colors-variables": "^3.0.0"
+        "sass": "^1.77.8"
     }
 }
